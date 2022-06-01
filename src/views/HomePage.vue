@@ -1,68 +1,150 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title>Blank</ion-title>
-      </ion-toolbar>
+  <ion-page class="master">
+    <ion-header class="header ion-no-border">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="2">
+            <img src="assets/icon/iconM.png" alt="Manflix" />
+          </ion-col>
+
+          <ion-col size="10">
+            <ion-row>
+              <ion-col size="4"><span class="menuHeader">Séries</span></ion-col>
+              <ion-col size="4"><span class="menuHeader">Filmes</span></ion-col>
+              <ion-col size="4"
+                ><span class="menuHeader">Trailers</span></ion-col
+              >
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-header>
-    
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
-      <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-      </div>
-    </ion-content>
+
+    <div class="poster"></div>
+
+    <ion-grid class="buttons">
+      <ion-row>
+        <ion-col size="4">
+          <ion-button color="dark" fill="clear">
+            <div>
+              <ion-icon
+                class="lblContrast lblIcon"
+                :icon="addOutline"
+              ></ion-icon>
+              <ion-label class="lblContrast">Minha Lista</ion-label>
+            </div>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="4">
+          <ion-button color="light">
+            <div>
+              <ion-icon
+                class="lblIcon"
+                :icon="playOutline"
+              ></ion-icon>
+              <ion-label class="lblDark">Assistir</ion-label>
+            </div>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="4"> 
+            <ion-button color="dark" fill="clear">
+            <div>
+              <ion-icon class="lblContrast lblIcon" :icon="alertCircleOutline"></ion-icon>
+              <ion-label class="lblContrast">Saiba Mais</ion-label>
+            </div>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-page>
 </template>
 
-<script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { defineComponent } from 'vue';
+<script>
+import {
+  IonHeader,
+  IonPage,
+  IonCol,
+  IonGrid,
+  IonRow,
+  IonLabel,
+  IonButton,
+} from "@ionic/vue";
+import { defineComponent } from "vue";
+import { addOutline, playOutline, alertCircleOutline } from "ionicons/icons";
 
 export default defineComponent({
-  name: 'HomePage',
+  name: "HomePage",
   components: {
-    IonContent,
     IonHeader,
     IonPage,
-    IonTitle,
-    IonToolbar
-  }
+    IonCol,
+    IonGrid,
+    IonRow,
+    IonLabel,
+    IonButton,
+  },
+  setup() {
+    return {
+      addOutline,
+      playOutline,
+      alertCircleOutline,
+    };
+  },
 });
 </script>
 
-<style scoped>
-#container {
-  text-align: center;
-  
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
+<style scoped lang="scss">
+.master {
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  
-  color: #8c8c8c;
-  
-  margin: 0;
-}
+    .menuHeader {
+      font-weight: bold;
+    }
+  }
 
-#container a {
-  text-decoration: none;
+  .poster {
+    width: 100%;
+    height: 71vh;
+    background-image: url("https://poltronanerd.com.br/wp-content/uploads/2018/10/poltrona-daredevil-poster-season3-692x1024.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 11%);
+    mask-image: linear-gradient(to top, transparent 0%, black 11%);
+  }
+
+  .buttons{
+    margin-top: -40px;
+
+    ion-button div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lblContrast{
+      color: var(--ion-color-primary-contrast);
+      font-size: 11px;
+    }
+    .lblIcon{
+      font-size: 16px;
+    }
+
+    .lblDark {
+      color: var(--ion-color-primary);
+      font-weight: bold
+    }
+
+  }
 }
 </style>
